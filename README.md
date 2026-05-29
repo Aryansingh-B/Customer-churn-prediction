@@ -11,7 +11,9 @@ An end-to-end ML project predicting telecom customer churn using XGBoost, with a
 [👉 View Dashboard](YOUR_STREAMLIT_URL_HERE)
 
 ## 🎯 Business Problem
-Telecom companies lose 15-25% of customers annually. Acquiring a new customer costs 5-7× more than retaining one. This dashboard identifies at-risk customers before they churn and quantifies the revenue impact.
+Telecom companies lose 15-25% of customers annually. Acquiring a new customer costs 5-7× more
+than retaining one. This dashboard identifies at-risk customers before they churn and quantifies
+the revenue impact.
 
 ## 💡 Key Features
 - **Churn Prediction** — XGBoost model with ROC-AUC ~0.84
@@ -36,26 +38,59 @@ customer-churn-prediction/
 │   ├── data_preprocessing.py
 │   ├── model_training.py
 │   └── utils.py
-├── models/                   # Saved artifacts (gitignored)
-├── data/                     # Dataset (gitignored)
+├── data/                     # ← NOT in repo (see Dataset section below)
+├── models/                   # ← NOT in repo (auto-generated after training)
 ├── requirements.txt
+├── setup.py
+├── .env.example
 └── README.md
 \`\`\`
 
+## 📥 Dataset Setup (Required Before Running)
+
+The dataset is **not included in this repo** (too large for GitHub).
+Download it manually from Kaggle:
+
+1. Go to 👉 [Telco Customer Churn — Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+2. Click **Download** (you'll need a free Kaggle account)
+3. Unzip the downloaded file
+4. Place `WA_Fn-UseC_-Telco-Customer-Churn.csv` inside the `data/` folder
+5. Rename it to `telco_churn.csv`
+
+Your folder should look like this:
+\`\`\`
+customer-churn-prediction/
+└── data/
+    └── telco_churn.csv    ✅
+\`\`\`
+
+> **Note:** The `data/` folder is listed in `.gitignore` so it will never be accidentally
+> pushed to GitHub, keeping the repo clean and lightweight.
+
 ## 🏃 Run Locally
+
 \`\`\`bash
+# 1. Clone the repo
 git clone https://github.com/YOUR_USERNAME/customer-churn-prediction
 cd customer-churn-prediction
-python -m venv venv && source venv/bin/activate
+
+# 2. Create virtual environment
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Download dataset
-python -c "import urllib.request; urllib.request.urlretrieve('https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv', 'data/telco_churn.csv')"
+# 4. Set up environment variables
+cp .env.example .env
+# Edit .env if needed (optional for this project)
 
-# Train model
+# 5. Download dataset from Kaggle (see Dataset Setup section above)
+
+# 6. Train the model
 python -m src.model_training
 
-# Launch dashboard
+# 7. Launch the dashboard
 streamlit run app.py
 \`\`\`
 
@@ -72,6 +107,13 @@ streamlit run app.py
 - Fiber optic users show highest churn despite premium pricing
 - Customers without online security churn 35% more
 - First 12 months is the critical retention window
+
+## 🌐 Deployment (Streamlit Cloud)
+
+This app auto-downloads the dataset and trains the model on first deploy via `setup.py`.
+No manual steps needed on Streamlit Cloud — just connect your GitHub repo and hit Deploy.
+
+See full deployment steps in the [Run Locally](#-run-locally) section above.
 
 ## 📄 License
 MIT
