@@ -30,33 +30,32 @@ Telecom companies lose 15-25% of customers annually. Acquiring a new customer co
 | Deployment    | Streamlit Cloud                |
 
 ## 📂 Project Structure
+
+````
 customer-churn-prediction/
 │
-├── app.py                      # Streamlit dashboard
-│
+├── app.py
 ├── src/
-│   ├── init.py
-│   ├── data_preprocessing.py   # Cleaning, encoding, feature engineering
-│   ├── model_training.py       # XGBoost training + evaluation
-│   └── utils.py                # Shared helpers
-│
-├── data/                       # ← NOT in repo (see Dataset Setup below)
+│   ├── __init__.py
+│   ├── data_preprocessing.py
+│   ├── model_training.py
+│   └── utils.py
+├── data/                  # NOT in repo
 │   └── telco_churn.csv
-│
-├── models/                     # ← NOT in repo (auto-generated after training)
+├── models/                # NOT in repo (auto-generated)
 │   ├── xgb_churn_model.pkl
 │   ├── scaler.pkl
 │   ├── feature_names.json
 │   ├── metrics.json
 │   ├── feature_importance.csv
 │   └── test_predictions.csv
-│
 ├── requirements.txt
 ├── setup.py
 ├── .env
 ├── .env.example
 ├── .gitignore
 └── README.md
+````
 
 ## 📥 Dataset Setup (Required Before Running)
 
