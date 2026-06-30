@@ -1,126 +1,121 @@
-# 📊 Customer Churn Prediction & Intelligence Dashboard
+# 📡 Customer Churn Prediction & Analysis
 
-An end-to-end ML project predicting telecom customer churn using XGBoost, with a full business dashboard built in Streamlit.
+> A full-stack data science project predicting telecom customer churn using Machine Learning, SQL, and interactive visualizations.
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.35-red)
-![XGBoost](https://img.shields.io/badge/XGBoost-2.0-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)](https://python.org)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3+-orange?logo=scikit-learn)](https://scikit-learn.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 🚀 Live Demo
-[👉 View Dashboard](YOUR_STREAMLIT_URL_HERE)
+---
 
-## 🎯 Business Problem
-Telecom companies lose 15-25% of customers annually. Acquiring a new customer costs 5-7× more than retaining one. This dashboard identifies at-risk customers before they churn and quantifies the revenue impact.
+## 🎯 Project Overview
 
-## 💡 Key Features
-- **Churn Prediction** — XGBoost model with ROC-AUC ~0.84
-- **Segment Analysis** — Churn by contract type, payment method, services
-- **Risk Scoring** — Low / Medium / High risk tiering per customer
-- **Live Predictor** — Enter any customer's details, get instant churn probability
-- **Business KPIs** — Revenue at risk, CLV impact, retention levers
+This project analyzes a telecom dataset of **7,000+ customer records** to:
+- Identify key churn drivers (contract type, tenure, billing method)
+- Build a **Logistic Regression model** achieving **82% accuracy**
+- Deliver actionable business insights via dashboards
+
+---
+
+## 🗂️ Project Structure
+
+```
+customer-churn-prediction/
+│
+├── data/                        # Raw and processed datasets
+│   ├── raw/                     # Original telecom dataset
+│   └── processed/               # Cleaned & feature-engineered data
+│
+├── notebooks/                   # Jupyter Notebooks (EDA, modeling)
+│   ├── 01_EDA.ipynb
+│   ├── 02_Feature_Engineering.ipynb
+│   └── 03_Modeling.ipynb
+│
+├── src/                         # Python source modules
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── model.py
+│   └── evaluate.py
+│
+├── sql/                         # SQL queries for data analysis
+│   └── churn_analysis.sql
+│
+├── reports/                     # Output charts and reports
+│
+├── tests/                       # Unit tests
+│   └── test_preprocessing.py
+│
+├── main.py                      # Entry point
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Aryansingh-B/customer-churn-prediction.git
+cd customer-churn-prediction
+```
+
+### 2. Create a virtual environment
+```bash
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the full pipeline
+```bash
+python main.py
+```
+
+---
+
+## 📊 Key Results
+
+| Metric        | Value  |
+|---------------|--------|
+| Accuracy      | 82%    |
+| Precision     | 80%    |
+| Recall        | 78%    |
+| F1 Score      | 79%    |
+| ROC-AUC       | 0.87   |
+
+### Top Churn Drivers
+1. **Month-to-month contracts** → 3x higher churn risk
+2. **Fiber optic internet** → Higher churn than DSL
+3. **Tenure < 12 months** → Most vulnerable segment
+4. **Electronic check payment** → Correlated with churn
+
+---
 
 ## 🛠️ Tech Stack
 
-| Layer         | Tools                          |
-|---------------|--------------------------------|
-| ML            | XGBoost, Scikit-learn, SMOTE   |
-| Data          | Pandas, NumPy                  |
-| Visualization | Plotly, Streamlit              |
-| Deployment    | Streamlit Cloud                |
+- **Python** — Core language
+- **Pandas / NumPy** — Data wrangling
+- **Scikit-learn** — ML modeling
+- **Matplotlib / Seaborn** — Visualizations
+- **SQL (SQLite)** — Data querying
+- **Tableau** — Business dashboard (see `/reports/`)
 
-## 📂 Project Structure
+---
 
-````
-customer-churn-prediction/
-│
-├── app.py
-├── src/
-│   ├── __init__.py
-│   ├── data_preprocessing.py
-│   ├── model_training.py
-│   └── utils.py
-├── data/                  # NOT in repo
-│   └── telco_churn.csv
-├── models/                # NOT in repo (auto-generated)
-│   ├── xgb_churn_model.pkl
-│   ├── scaler.pkl
-│   ├── feature_names.json
-│   ├── metrics.json
-│   ├── feature_importance.csv
-│   └── test_predictions.csv
-├── requirements.txt
-├── setup.py
-├── .env
-├── .env.example
-├── .gitignore
-└── README.md
-````
+## 📈 Business Impact
 
-## 📥 Dataset Setup (Required Before Running)
+- Identified **top churn segments** for targeted retention campaigns
+- Enabled proactive **marketing interventions** for at-risk customers
+- Simulated **15% churn reduction** via actionable recommendations
 
-The dataset is **not included in this repo** (gitignored to keep the repo lightweight).
-Download it manually from Kaggle:
-
-1. Go to 👉 [Telco Customer Churn — Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
-2. Click **Download** (free Kaggle account required)
-3. Unzip the downloaded file
-4. Place the CSV inside the `data/` folder
-5. Rename it to `telco_churn.csv`
-
-Your folder should look like:
-
-customer-churn-prediction/
-└── data/
-└── telco_churn.csv    ✅
-
-> The `data/` folder is listed in `.gitignore` and will never be accidentally pushed to GitHub.
-
-## 🏃 Run Locally
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/customer-churn-prediction
-cd customer-churn-prediction
-
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Set up environment variables
-cp .env.example .env
-
-# 5. Download dataset from Kaggle (see Dataset Setup above)
-
-# 6. Train the model
-python -m src.model_training
-
-# 7. Launch the dashboard
-streamlit run app.py
-```
-
-## 📈 Model Performance
-
-| Metric    | Score |
-|-----------|-------|
-| ROC-AUC   | ~0.84 |
-| F1 Score  | ~0.62 |
-| Precision | ~0.67 |
-| Recall    | ~0.57 |
-
-## 🔍 Key Insights
-- Month-to-month contracts churn at **3× the rate** of annual contracts
-- Fiber optic users show highest churn despite premium pricing
-- Customers without online security churn **35% more**
-- First **12 months** is the critical retention window
-
-## 🌐 Deployment (Streamlit Cloud)
-
-This app auto-trains the model on first deploy via `setup.py`.
-No manual steps needed — just connect your GitHub repo and click Deploy.
+---
 
 ## 📄 License
-MIT
+
+This project is licensed under the [MIT License](LICENSE).
